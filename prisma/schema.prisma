@@ -1,0 +1,104 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Ally {
+  id          String      @id
+  pirateId    String
+  PirateGroup PirateGroup @relation(fields: [pirateId], references: [id])
+}
+
+model DevilFruit {
+  id                String           @id
+  name              String
+  description       String
+  type              String
+  imageUrl          String
+  pirateCharacterId String?
+  PirateCharacter   PirateCharacter? @relation(fields: [pirateCharacterId], references: [id])
+}
+
+model Haki {
+  id              String            @id
+  name            String
+  description     String
+  imageUrl        String
+  PirateCharacter PirateCharacter[]
+}
+
+model Marine {
+  id      String  @id
+  orgType OrgType @default(Marines)
+}
+
+model PirateCharacter {
+  id            String          @id
+  name          String
+  description   String
+  nickName      String?
+  bounty        Int?
+  fightingStyle String
+  rank          Rank
+  crewId        String?
+  imageUrl      String[]
+  bgImageUrl    String[]
+  DevilFruit    DevilFruit[]
+  PirateGroup   PirateGroup?    @relation(fields: [crewId], references: [id])
+  SpecialAttack SpecialAttack[]
+  Weapon        Weapon[]
+  Haki          Haki[]
+
+  @@index([id])
+}
+
+model PirateGroup {
+  id              String            @id
+  name            String
+  description     String
+  shipName        String
+  orgType         OrgType           @default(Pirates)
+  imageUrl        String[]
+  bgImageUrl      String[]
+  Ally            Ally[]
+  PirateCharacter PirateCharacter[]
+}
+
+model SpecialAttack {
+  id                String           @id
+  name              String
+  description       String
+  pirateCharacterId String?
+  imageUrl          String[]
+  PirateCharacter   PirateCharacter? @relation(fields: [pirateCharacterId], references: [id])
+}
+
+model Weapon {
+  id                String           @id
+  name              String
+  pirateCharacterId String?
+  imageUrl          String[]
+  PirateCharacter   PirateCharacter? @relation(fields: [pirateCharacterId], references: [id])
+}
+
+enum OrgType {
+  Pirates
+  Marines
+  Other
+}
+
+enum Rank {
+  Captain
+  ViceCaptain
+  Cook
+  Helmsman
+  Doctor
+  Navigator
+  Litrate
+  Member
+  Musician
+}
