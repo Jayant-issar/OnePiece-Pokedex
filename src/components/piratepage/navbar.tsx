@@ -4,7 +4,7 @@ import Searchbox from './Searchbox'
 
 function PiratePageNavBar() {
   return (
-    <div id="ladingpagenavbar" className="w-full h-16 flex items-center gap-6 justify-between py- px-3">
+    <div id="ladingpagenavbar" className="w-full h-[10.3vh] flex items-center gap-6 justify-between py- px-3">
         <div id='logo and features' className='flex items-center gap-6'>
           <div className="flex flex-col items-center text-white/95 gap-0">
             <div className="font-medium md:text-2xl text-center">
