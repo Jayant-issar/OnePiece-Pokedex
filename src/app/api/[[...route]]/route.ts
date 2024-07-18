@@ -23,6 +23,13 @@ app.get('/pirate',async (c)=>{
     const piratedata = await db.pirateCharacter.findUnique({
         where:{
             id:pirateId
+        },
+        include:{
+            DevilFruit:true,
+            Haki:true,
+            PirateGroup:true,
+            SpecialAttack:true,
+            Weapon:true
         }
     }) 
     try {

@@ -8,13 +8,14 @@ import DevilFruit from './DevilFruit'
 import Weapons from './Weapons'
 import Allies from './Allies'
 import Haki from './Haki'
+import { PirateData } from '@/lib/types'
 
-function ContentMaster() {
+function ContentMaster(ContentMasterProps:PirateData) {
   const {controlId} = useStore()
   if (controlId==0){
     return (
       <div>
-        <GeneralInformation/>
+        <GeneralInformation pirateName={ContentMasterProps.name} nickname={ContentMasterProps.nickName} bounty={ContentMasterProps.bounty} description={ContentMasterProps.description} rank={ContentMasterProps.rank} pirateGroup={ContentMasterProps.PirateGroup.name}/>
       </div>
     )
   }
