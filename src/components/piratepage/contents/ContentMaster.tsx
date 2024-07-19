@@ -15,14 +15,14 @@ function ContentMaster(ContentMasterProps:PirateData) {
   if (controlId==0){
     return (
       <div>
-        <GeneralInformation pirateName={ContentMasterProps.name} nickname={ContentMasterProps.nickName} bounty={ContentMasterProps.bounty} description={ContentMasterProps.description} rank={ContentMasterProps.rank} pirateGroup={ContentMasterProps.PirateGroup.name}/>
+        <GeneralInformation pirateName={ContentMasterProps.name} nickname={ContentMasterProps.nickName} bounty={ContentMasterProps.bounty} description={ContentMasterProps.description} rank={ContentMasterProps.rank} pirateGroup={ContentMasterProps.PirateGroup.name} fightingStyle={ContentMasterProps.fightingStyle}/>
       </div>
     )
   }
   if (controlId==1){
     return(
       <div>
-        <CrewInfo/>
+        <CrewInfo id={ContentMasterProps.crewId}/>
       </div>
     )
   }

@@ -5,7 +5,7 @@ import PiratePageNavBar from '@/components/piratepage/navbar'
 import { PirateData } from '@/lib/types'
 import axios from 'axios'
 import Image from 'next/image'
-import { useSearchParams } from 'next/navigation'
+import { redirect, useSearchParams } from 'next/navigation'
 import React, { useEffect, useState } from 'react'
 
 
@@ -14,8 +14,9 @@ function PirateOriginPage() {
   const searchParams  = useSearchParams();
   let pirateId = searchParams.get("pirateId")
   if (pirateId==null){
-    pirateId = "9c93a72a-006d-43ee-8c88-617cae4c4b0c"
-    alert("not found any pirate id automatically set pirateId to luffy's id")
+    redirect("/pirate?pirateId=9c93a72a-006d-43ee-8c88-617cae4c4b0c")
+    // pirateId = "9c93a72a-006d-43ee-8c88-617cae4c4b0c"
+    // alert("not found any pirate id automatically set pirateId to luffy's id")
   }
 
   //fetching data
@@ -24,7 +25,7 @@ function PirateOriginPage() {
   useEffect(()=>{
     const fetchPirateData = async () => {
       try {
-        const response = await axios.get(`http://localhost:3000/api/pirate?pirateId=${pirateId}`)
+        const response = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/pirate?pirateId=${pirateId}`)
         console.log(response.data.piratedata);
         setPirateData(response.data.piratedata)
         
@@ -58,7 +59,7 @@ function PirateOriginPage() {
               <div id="informationContainer" className='k w-[40vw] h-full overflow-y-scroll '>
                 
                 {/* fixed error from ai on passing the prop learn whats exactly happing */}
-                
+
                 <ContentMaster {...pirateData} />
               </div>
 

@@ -52,3 +52,15 @@ export interface PirateData {
     SpecialAttack:SpecialAttack[];
     Weapon: Weapon[];
 }
+
+export interface CrewMemberApiInterface {
+    name?: string;
+    id?: string;
+    bounty?: number;
+    rank?:string;
+    imageUrl?: string[];
+    bgImageUrl:string[]
+}
+  
+
+  

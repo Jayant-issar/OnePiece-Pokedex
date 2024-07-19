@@ -2,6 +2,7 @@
 import { Button } from '@/components/ui/button';
 import React, { useState } from 'react'
 import { CSSProperties } from 'react';
+import CrewMembersCarousel from './crewmembersCarousel';
 type GeneralInformationProps ={
   pirateName : string;
   nickname : string;
@@ -9,9 +10,10 @@ type GeneralInformationProps ={
   description: string;
   pirateGroup: string;
   rank:string;
+  fightingStyle:string;
 }
 
-function GeneralInformation({pirateName,nickname,bounty,description,pirateGroup,rank}:GeneralInformationProps) {
+function GeneralInformation({pirateName,nickname,bounty,description,pirateGroup,rank,fightingStyle}:GeneralInformationProps) {
   const customCSS = {
     WebkitLineClamp: 3,
     WebkitBoxOrient: 'vertical',
@@ -22,7 +24,7 @@ function GeneralInformation({pirateName,nickname,bounty,description,pirateGroup,
   //@ts-ignore
   const cssProperties: CSSProperties = customCSS
   const [descriptionOpen, setDescriptionOpen] = useState(false)
-  const allbadegs = ["Pirate",pirateGroup,rank]
+  const allbadegs = ["Pirate",pirateGroup,rank,fightingStyle]
   return (
     <div className='p-3 flex flex-col gap-3'>
       
@@ -30,7 +32,7 @@ function GeneralInformation({pirateName,nickname,bounty,description,pirateGroup,
           {
             allbadegs.map((badge)=>{
               return(
-                <div className=' bg-slate-700 p-3 text-lg bg-opacity-90 mr-3 text-white rounded-full'>
+                <div key={badge} className=' bg-slate-700 p-3 md:text-base text-lg bg-opacity-90 mr-3 text-white rounded-full'>
                   {badge}
                 </div>
               )
@@ -63,6 +65,8 @@ function GeneralInformation({pirateName,nickname,bounty,description,pirateGroup,
           </Button>
         </div>
       </div>
+
+      
       
     </div>
   )
