@@ -63,4 +63,27 @@ export interface CrewMemberApiInterface {
 }
   
 
-  
+export type SpecialAttackApiResponse = {
+    id: string;
+    name: string;
+    description: string;
+    pirateCharacterId?: string;
+    imageUrl: string[];
+};
+
+export type DevilfruitApiResponseType = {
+    id: string;
+    name:string;
+    description:string;
+    type:string
+    imageUrl:string
+    pirateCharacterId:string
+}
+
+export type weaponsApiResponse = {
+    id: string;
+    name:string
+    imageUrl:string[]
+    pirateCharacterId:string
+
+}

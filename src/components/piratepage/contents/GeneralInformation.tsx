@@ -32,7 +32,7 @@ function GeneralInformation({pirateName,nickname,bounty,description,pirateGroup,
           {
             allbadegs.map((badge)=>{
               return(
-                <div key={badge} className=' bg-slate-700 p-3 md:text-base text-lg bg-opacity-90 mr-3 text-white rounded-full'>
+                <div key={badge} className=' bg-slate-700 p-3 md:text-sm text-lg bg-opacity-90 mr-3 text-white rounded-full'>
                   {badge}
                 </div>
               )
@@ -54,7 +54,7 @@ function GeneralInformation({pirateName,nickname,bounty,description,pirateGroup,
       </div>
 
       {/* description of the pirate */}
-      <div id="descrription" className=' text-white text-xl leading-6 backdrop-blur-3xl'>
+      <div id="descrription" className=' text-white text-xl leading-6 p-2 rounded-lg backdrop-blur-3xl'>
     
         <div style={descriptionOpen? undefined : cssProperties}>
           {description}

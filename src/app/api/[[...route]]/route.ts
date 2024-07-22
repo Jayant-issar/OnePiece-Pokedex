@@ -8,7 +8,15 @@ const app = new Hono().basePath('/api')
 
 app.get('/allpirates', async (c) => {
     try {
-        const allpirates = await db.pirateCharacter.findMany();
+        const allpirates = await db.pirateCharacter.findMany({
+            select:{
+                bgImageUrl:true,
+                id:true,
+                name:true,
+                bounty:true,
+                rank:true
+            }
+        });
         return c.json({
             allpirates: allpirates
         });
@@ -17,6 +25,26 @@ app.get('/allpirates', async (c) => {
         return c.json({ error: "Internal Server Error" }, 500);
     }
 })
+
+//all crews
+app.get('/allCrews', async (c) => {
+    try {
+        const allCrews = await db.pirateGroup.findMany({
+            select:{
+                bgImageUrl:true,
+                name:true,
+                id:true
+            }
+        })
+        return c.json({
+            allCrews: allCrews
+        });
+    } catch (error) {
+        console.error("Error fetching all crews:", error);
+        return c.json({ error: "Internal Server Error" }, 500);
+    }
+})
+
 
 //serach pirate group
 app.get('/crew', async (c) => {
@@ -87,6 +115,79 @@ app.get('/crewMembers', async (c)=>{
     } catch (error) {
         console.error(error);
         console.log("no such pirate crew found");
+    }
+})
+
+
+//api for special attacks reqquest
+
+app.get('/specialAttacks', async (c) => {
+    const pirateId = c.req.query("pirateId")
+    try {
+        const specialAttacks = await db.specialAttack.findMany({
+            where:{
+                pirateCharacterId:pirateId
+            }
+        });
+        return c.json({
+            specialAttacks: specialAttacks
+        });
+    } catch (error) {
+        console.error("Error finding special attacks:", error);
+        return c.json({ error: "Internal Server Error" }, 500);
+    }
+})
+
+app.get('/devilfruit', async (c) => {
+    const pirateId = c.req.query("pirateId")
+    try {
+        const devilfruit = await db.devilFruit.findMany({
+            where:{
+                pirateCharacterId:pirateId
+            }
+        });
+        return c.json({
+            devilfruit: devilfruit
+        });
+    } catch (error) {
+        console.error("Error finding devil fruit:", error);
+        return c.json({ error: "Internal Server Error" }, 500);
+    }
+})
+
+app.get('/weapons', async (c) => {
+    const pirateId = c.req.query("pirateId")
+    try {
+        const weapons = await db.weapon.findMany({
+            where:{
+                pirateCharacterId:pirateId
+            }
+        });
+        return c.json({
+            weapons: weapons
+        });
+    } catch (error) {
+        console.error("Error finding weapons:", error);
+        return c.json({ error: "Internal Server Error" }, 500);
+    }
+})
+
+app.get('/haki', async (c) => {
+    const pirateId = c.req.query("pirateId")
+    try {
+        const haki = await db.pirateCharacter.findMany({
+            where:{
+                id:pirateId
+            },select:{
+                Haki:true
+            }
+        })
+        return c.json({
+            haki:haki
+        });
+    } catch (error) {
+        console.error("Error haki:", error);
+        return c.json({ error: "Internal Server Error" }, 500);
     }
 })
 

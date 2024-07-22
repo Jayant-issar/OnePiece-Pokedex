@@ -1,53 +1,55 @@
-import React, { useEffect, useState } from 'react'
+import React, { CSSProperties, useEffect, useMemo, useState } from 'react'
 import CrewMembersCarousel from './crewmembersCarousel'
-import axios from 'axios';
-import GeneralContentSkeleton from './GeneralContentSkeleton';
+import Image from 'next/image';
+import { Button } from '@/components/ui/button';
+import { PirateGroup } from '@/lib/types';
+
+
 
 type props = {
-  id: string;
-  name?: string;
-  description?: string;
-  shipName?: string;
-  orgType?: 'Pirates' | 'Marines' | 'Other';  // Assuming orgType is an enum with these values
-  imageUrl?: string[];
-  bgImageUrl?: string[];
+  id:string
+  crewdata:PirateGroup
 }
 
 function CrewInfo(props:props) {
   
-  const [crewData,setCrewData] = useState<props|null>()
-
-  useEffect(()=>{
-
-    async function fetchCrewData() {
-
-      const response = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/crew?crewId=${props.id}`)
-      console.log("the crew data is - ", response.data.allpirates);
-      setCrewData(response.data.allpirates)
-    }
-    fetchCrewData()
-  },[])
   
-  if(!crewData){
-    return(
-        <div className=' flex justify-center'>
-          <GeneralContentSkeleton/>
-        </div>
-
-    )
-  }
-  console.log("set crew data is ", crewData);
+  const [crewDescriptionOpen, setCrewDescriptionOpen] = useState(false)
+  const customCSS = {
+    WebkitLineClamp: 3,
+    WebkitBoxOrient: 'vertical',
+    overflow: 'hidden',
+    display: '-webkit-box'
+  };
+  //@ts-ignore
+  const cssProperties: CSSProperties = customCSS
   
+  const randomCrewbgImageLink = props.crewdata.bgImageUrl[Math.floor(Math.random() * props.crewdata.bgImageUrl.length)]
   return (
     <div>
       {/* about crew */}
-      <div id="aboutcrew">
-        <div className=' text-white text-5xl text-center font-semibold'>
-          {crewData.name}
-          <div>
-            
+      <div id="aboutcrew" className=' flex flex-col gap-3'>
+        <div id='crewname and image' className=' text-white text-5xl text-center font-semibold'>
+          {props.crewdata.name}
+          <div className=' flex justify-center mt-2'>
+            <Image src={randomCrewbgImageLink} alt='Crew Image' width={500} height={450} className=' rounded-md'/>
           </div>
         </div>
+
+        <div id="aboutcrew" className=' text-white'>
+          <p className=' text-4xl font-semibold'>About</p>
+          
+          <div className=' text-lg leading-5' style={crewDescriptionOpen? undefined : cssProperties} >
+            {props.crewdata.description}
+          </div>
+          <Button onClick={()=>setCrewDescriptionOpen(!crewDescriptionOpen)} variant="ghost" className='p-1 text-base hover:bg-transparent transition hover:text-white'>
+            {crewDescriptionOpen? "Read less.." : "Read more.."}
+          </Button>
+          <p className=' text-3xl font-semibold mb-1'>Ship Name - {props.crewdata.shipName}</p>
+          
+        </div>
+
+
       </div>
       {/* more from same pirate group */}
       <div id="suggestedPirates">

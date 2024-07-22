@@ -7,8 +7,10 @@ import SpecialAttacks from './SpecialAttacks'
 import DevilFruit from './DevilFruit'
 import Weapons from './Weapons'
 import Allies from './Allies'
-import Haki from './Haki'
+
 import { PirateData } from '@/lib/types'
+import HakiContent from './Haki'
+import DevilFruitContent from './DevilFruit'
 
 function ContentMaster(ContentMasterProps:PirateData) {
   const {controlId} = useStore()
@@ -22,28 +24,28 @@ function ContentMaster(ContentMasterProps:PirateData) {
   if (controlId==1){
     return(
       <div>
-        <CrewInfo id={ContentMasterProps.crewId}/>
+        <CrewInfo id={ContentMasterProps.crewId} crewdata={ContentMasterProps.PirateGroup}/>
       </div>
     )
   }
   if (controlId==2){
     return (
       <div>
-        <SpecialAttacks/>
+        <SpecialAttacks pirateId={ContentMasterProps.id}  SpecialAttackdata={ContentMasterProps.SpecialAttack}/>
       </div>
     )
   }
   if (controlId==3){
     return (
       <div>
-        <DevilFruit/>
+        <DevilFruitContent pirateId={ContentMasterProps.id} devilfruitdata={ContentMasterProps.DevilFruit} />
       </div>
     )
   }
   if (controlId==4){
     return (
       <div>
-        <Weapons/>
+        <Weapons pirateId={ContentMasterProps.id} weapondata={ContentMasterProps.Weapon}/>
       </div>
     )
   }
@@ -55,7 +57,7 @@ function ContentMaster(ContentMasterProps:PirateData) {
   if (controlId==6){
     return (
       <div>
-        <Haki/>
+        <HakiContent hakidata={ContentMasterProps.Haki}/>
       </div>
     )
   }

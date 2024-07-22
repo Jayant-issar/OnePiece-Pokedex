@@ -2,6 +2,7 @@
 import React from 'react'
 import { Button } from '../ui/button'
 import { useStore } from '@/lib/store'
+import { cn } from '@/lib/utils'
 
 function Controls() {
     const {controlId , inc} = useStore()
@@ -16,7 +17,9 @@ function Controls() {
                         
                         return(
                             <div key={control.controlId}>
-                                <Button className='text-3xl text-white/90 font-normal leading-tight bg-transparent hover:bg-white/20 p-2 rounded-lg text-end'
+                                <Button className={cn('text-3xl text-white/90 flex items-center font-normal leading-tight bg-transparent hover:bg-white/20 p-3 rounded-lg text-end',{
+                                "bg-red-600/80 bg-opacity-70 hover:bg-red-600  transition":controlId==control.controlId,
+                                })}
                                 onClick={()=>{
                                     inc(control.controlId)
                                 }}

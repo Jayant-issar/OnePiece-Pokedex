@@ -54,16 +54,18 @@ function CrewMembersCarousel({crewId}:props) {
               {
                 crewMembers.map((crewMember)=>{
                   let imageArr = ["/"]
+
                   if (crewMember.imageUrl){
                     imageArr = crewMember.bgImageUrl
                   }else{
                     console.log("image url array not found of character - ", crewMember.name);
                   }
+                  const randomIndex = Math.floor(Math.random() * imageArr.length)
                    
                   return(
                     <CarouselItem  className="md:basis-1/2  ">
                       <div className="p-1 max-w-48">
-                        <PirateCard rank={crewMember.rank} bounty={crewMember.bounty} fullname={crewMember.name} imageLink={imageArr[0]} pirateId={crewMember.id}/>
+                        <PirateCard rank={crewMember.rank} bounty={crewMember.bounty} fullname={crewMember.name} imageLink={imageArr[randomIndex]} pirateId={crewMember.id}/>
                       </div>
                     </CarouselItem>
                   )
