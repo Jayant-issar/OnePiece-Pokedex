@@ -6,6 +6,7 @@ export const runtime = 'edge'
 
 const app = new Hono().basePath('/api')
 
+
 app.get('/allpirates', async (c) => {
     try {
         const allpirates = await db.pirateCharacter.findMany({
@@ -89,6 +90,44 @@ app.get('/pirate',async (c)=>{
         
     }
 })
+
+//search by name (api for search box)
+app.get('/pirate/byName', async (c)=>{
+    const pirateName = c.req.query('pirateName')
+    try {
+        const pirateData = await db.pirateCharacter.findMany({
+            where:{
+                name:{
+                    contains:pirateName,
+                    mode: 'insensitive'
+                }
+            },select:{
+                name:true,
+                id:true,
+                rank:true,
+                bgImageUrl:true,
+                PirateGroup: {
+                    select:{
+                        name:true
+                    }
+                }
+            }
+        })
+        return c.json({
+            pirateData: pirateData
+        })
+    } catch (error) {
+        console.log("error occured while finding a pirate with name ", pirateName);
+        console.error(error);
+        
+    }
+})
+
+
+
+
+
+
 
 //character of a crew
 
