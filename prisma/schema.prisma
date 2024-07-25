@@ -4,44 +4,82 @@ generator client {
 
 datasource db {
   provider = "postgresql"
-  url      = env("DATABASE_URL")
+  url      = env("SUPABASE_ACCELERATE_DATABASE_URL")
+  directUrl = env("SUPABASE_DATABASE_DIRECT_URL")
+
 }
 
 model Ally {
-  id          String      @id
-  pirateId    String
-  PirateGroup PirateGroup @relation(fields: [pirateId], references: [id])
+  id         String      @id @default(cuid())
+  pirateId1  String
+  pirateId2  String
+  PirateGroup1 PirateGroup @relation("PirateGroup1", fields: [pirateId1], references: [id])
+  PirateGroup2 PirateGroup @relation("PirateGroup2", fields: [pirateId2], references: [id])
+  @@unique([pirateId1, pirateId2])
 }
 
 model DevilFruit {
-  id                String           @id
+  id                String           @id @default(cuid())
   name              String
   description       String
   type              String
   imageUrl          String
   pirateCharacterId String?
   PirateCharacter   PirateCharacter? @relation(fields: [pirateCharacterId], references: [id])
+  marineCharacterId String?
+  MarineCharacter   MarineCharacter? @relation(fields: [marineCharacterId], references: [id])
+  otherCharacterId  String?
+  OtherCharacter    OtherCharacter?  @relation(fields: [otherCharacterId], references: [id])
 }
 
 model Haki {
-  id              String            @id
+  id              String            @id @default(cuid())
   name            String
   description     String
   imageUrl        String
-  PirateCharacter PirateCharacter[]
+  PirateCharacter PirateCharacter[] @relation("HakiToPirateCharacter")
+  MarineCharacter MarineCharacter[] @relation("HakiToMarineCharacter")
+  OtherCharacter  OtherCharacter[]  @relation("HakiToOtherCharacter")
 }
 
 model Marine {
-  id      String  @id
+  id      String  @id @default(cuid())
   orgType OrgType @default(Marines)
 }
 
+model MarineCharacter {
+  id            String          @id @default(cuid())
+  name          String
+  description   String
+  rank          String
+  imageUrl      String[]
+  bgImageUrl    String[]
+  DevilFruit    DevilFruit[]
+  SpecialAttack SpecialAttack[]
+  Weapon        Weapon[]
+  Haki          Haki[]          @relation("HakiToMarineCharacter")
+}
+
+model OtherCharacter {
+  id            String          @id @default(cuid())
+  name          String
+  description   String
+  affiliation   String
+  bounty        String              @default("0")
+  imageUrl      String[]
+  bgImageUrl    String[]
+  DevilFruit    DevilFruit[]
+  SpecialAttack SpecialAttack[]
+  Weapon        Weapon[]
+  Haki          Haki[]          @relation("HakiToOtherCharacter")
+}
+
 model PirateCharacter {
-  id            String          @id
+  id            String          @id @default(cuid())
   name          String
   description   String
   nickName      String?
-  bounty        Int?
+  bounty        String                @default("0")
   fightingStyle String
   rank          Rank
   crewId        String?
@@ -51,42 +89,49 @@ model PirateCharacter {
   PirateGroup   PirateGroup?    @relation(fields: [crewId], references: [id])
   SpecialAttack SpecialAttack[]
   Weapon        Weapon[]
-  Haki          Haki[]
-
-  @@index([id])
+  Haki          Haki[]          @relation("HakiToPirateCharacter")
 }
 
 model PirateGroup {
-  id              String            @id
+  id              String            @id @default(cuid())
   name            String
   description     String
   shipName        String
   orgType         OrgType           @default(Pirates)
   imageUrl        String[]
   bgImageUrl      String[]
-  Ally            Ally[]
+  Ally1           Ally[]            @relation("PirateGroup1")
+  Ally2           Ally[]            @relation("PirateGroup2")
   PirateCharacter PirateCharacter[]
 }
 
 model SpecialAttack {
-  id                String           @id
+  id                String           @id @default(cuid())
   name              String
   description       String
   pirateCharacterId String?
+  marineCharacterId String?
+  otherCharacterId  String?
   imageUrl          String[]
   PirateCharacter   PirateCharacter? @relation(fields: [pirateCharacterId], references: [id])
+  MarineCharacter   MarineCharacter? @relation(fields: [marineCharacterId], references: [id])
+  OtherCharacter    OtherCharacter?  @relation(fields: [otherCharacterId], references: [id])
 }
 
 model Weapon {
-  id                String           @id
+  id                String           @id @default(cuid())
   name              String
   pirateCharacterId String?
+  marineCharacterId String?
+  otherCharacterId  String?
   imageUrl          String[]
   PirateCharacter   PirateCharacter? @relation(fields: [pirateCharacterId], references: [id])
+  MarineCharacter   MarineCharacter? @relation(fields: [marineCharacterId], references: [id])
+  OtherCharacter    OtherCharacter?  @relation(fields: [otherCharacterId], references: [id])
 }
 
 enum OrgType {
-  Pirates
+  Pirates 
   Marines
   Other
 }

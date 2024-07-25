@@ -10,7 +10,7 @@ function MarinesOriginPage() {
             </div>
             
             <div className=' flex flex-col items-center justify-center h-[89.7vh]'>
-            <p className=' text-white/90 text-3xl text-center md:text-6xl font-semibold'>Database seeding is in Progress Please wait till the next update </p>
+            <p className=' text-white/90 text-3xl text-center md:text-6xl font-semibold'>Database seeding in Progress Please wait till the next update </p>
             <p className='text-white/90 text-2xl md:text-5xl font-semibold'>Thankyou</p>
             </div>
             

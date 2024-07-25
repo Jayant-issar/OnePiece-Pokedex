@@ -8,6 +8,7 @@ import axios from 'axios'
 import Image from 'next/image'
 import { redirect, useSearchParams } from 'next/navigation'
 import React, { useEffect, useState } from 'react'
+import { useRouter } from 'next/router'
 
 type imagesType = {
   foregroundImageUrl : string;
@@ -21,7 +22,7 @@ function PirateOriginPage() {
 
   //redirecting to luffy if there is no pirateId found
   if (pirateId==null){
-    redirect("/pirate?pirateId=9c93a72a-006d-43ee-8c88-617cae4c4b0c")
+    redirect("/pirate?pirateId=cjlcg4gxi0000v1ltfhz6u1v6")
   }
 
   //fetching data

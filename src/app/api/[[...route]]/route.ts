@@ -6,24 +6,32 @@ export const runtime = 'edge'
 
 const app = new Hono().basePath('/api')
 
+app.get('/hello', (c)=>{
+    return c.json({
+        message:"hello "
+    })
+})
 
 app.get('/allpirates', async (c) => {
     try {
-        const allpirates = await db.pirateCharacter.findMany({
+        console.log("request came for all pirates");
+        
+        const allPirates = await db.pirateCharacter.findMany({
             select:{
                 bgImageUrl:true,
                 id:true,
                 name:true,
                 bounty:true,
-                rank:true
+                rank:true,
+
             }
-        });
+        })
         return c.json({
-            allpirates: allpirates
+            allpirates: allPirates
         });
     } catch (error) {
         console.error("Error fetching all pirates:", error);
-        return c.json({ error: "Internal Server Error" }, 500);
+        return c.json({ error: "Internal Server Error"+error }, 500);
     }
 })
 
@@ -42,6 +50,44 @@ app.get('/allCrews', async (c) => {
         });
     } catch (error) {
         console.error("Error fetching all crews:", error);
+        return c.json({ error: "Internal Server Error" }, 500);
+    }
+})
+
+//searching devil fruit
+
+app.get('/devilFruits', async (c)=>{
+    try {
+        const allDevilFruits = await db.devilFruit.findMany({
+            select:{
+                name:true,
+                description:true,
+                imageUrl:true,
+                type:true,
+                PirateCharacter:{
+                    select:{
+                        name:true
+                    }
+                },
+                MarineCharacter: {
+                    select:{
+                        name:true
+                    }
+                },
+                OtherCharacter:{
+                    select:{
+                        name:true
+                    }
+                }
+                
+
+            }
+        })
+        return c.json({
+            allDevilFruits:allDevilFruits
+        })
+    } catch (error) {
+        console.error("error while fetching all devil fruits ", error);
         return c.json({ error: "Internal Server Error" }, 500);
     }
 })
@@ -133,27 +179,26 @@ app.get('/pirate/byName', async (c)=>{
 
 app.get('/crewMembers', async (c)=>{
     const crewId = c.req.query("crewId")
-    const crewMembers = await db.pirateCharacter.findMany({
-        where:{
-            PirateGroup:{
-                id:crewId
-            }
-        },select:{
-            name:true,
-            id:true,
-            bounty:true,
-            imageUrl:true,
-            rank:true,
-            bgImageUrl:true
-        }
-    })
     try {
+        const crewMembers = await db.pirateCharacter.findMany({
+            where:{
+                crewId:crewId
+            },select:{
+                name:true,
+                id:true,
+                bounty:true,
+                rank:true,
+                bgImageUrl:true,
+                imageUrl:true
+            }
+        })
+
         return c.json({
             crewMembers:crewMembers
         })
     } catch (error) {
-        console.error(error);
-        console.log("no such pirate crew found");
+        console.error("error find crew memners", error);
+        
     }
 })
 

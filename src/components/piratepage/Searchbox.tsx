@@ -1,6 +1,7 @@
 'use client'
 
-import React, { useEffect, useMemo, useState } from 'react'
+import React, {  useState } from 'react'
+
 import {AiOutlineSearch} from 'react-icons/ai'
 import axios from 'axios'
 import Link from 'next/link'
@@ -19,7 +20,7 @@ type SearchApiResponse = {
 const Searchbar = () => {
 
     const [activeSearch, setActiveSearch] = useState<SearchApiResponse[]>([])
-
+    
     // useMemo(()=>{
         
     // },[])
@@ -36,7 +37,7 @@ const Searchbar = () => {
         }
         fetchData()
     }
-    
+
   return (
     <form className='w-full relative'>
         <div className="relative">
@@ -49,7 +50,7 @@ const Searchbar = () => {
         {   
 
             activeSearch.length > 0 && (
-                <div className="absolute top-20 p-4 bg-zinc-800 bg-opacity-80 text-white w-full rounded-xl left-1/2 -translate-x-1/2 flex flex-col gap-2">
+                <div className="absolute top-20 p-4 bg-black bg-opacity-80 text-white w-full rounded-xl left-1/2 -translate-x-1/2 flex flex-col gap-2">
                     {
                         activeSearch.map(pirate => (
                             <Link href={`pirate?pirateId=${pirate.id}`}>

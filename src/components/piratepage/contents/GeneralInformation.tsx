@@ -2,11 +2,11 @@
 import { Button } from '@/components/ui/button';
 import React, { useState } from 'react'
 import { CSSProperties } from 'react';
-import CrewMembersCarousel from './crewmembersCarousel';
+
 type GeneralInformationProps ={
   pirateName : string;
   nickname : string;
-  bounty: number;
+  bounty: string;
   description: string;
   pirateGroup: string;
   rank:string;
@@ -32,7 +32,7 @@ function GeneralInformation({pirateName,nickname,bounty,description,pirateGroup,
           {
             allbadegs.map((badge)=>{
               return(
-                <div key={badge} className=' bg-slate-700 p-3 md:text-sm text-lg bg-opacity-90 mr-3 text-white rounded-full'>
+                <div key={badge} className=' bg-zinc-800/70 p-3 md:text-sm text-lg bg-opacity-90 mr-3 text-white rounded-full'>
                   {badge}
                 </div>
               )

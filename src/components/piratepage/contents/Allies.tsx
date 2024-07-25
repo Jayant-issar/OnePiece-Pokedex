@@ -2,7 +2,9 @@ import React from 'react'
 
 function Allies() {
   return (
-    <div>Allies</div>
+    <div className=' text-5xl text-white font-semibold'>
+      Work in progress please wait till the next update
+    </div>
   )
 }
 

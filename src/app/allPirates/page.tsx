@@ -8,7 +8,7 @@ type AllpiratesApiResponse = {
     bgImageUrl:string[],
     id: string,
     name:string,
-    bounty:number,
+    bounty:string,
     rank:string
 }
 
@@ -38,7 +38,7 @@ function AllPiratesOriginPage() {
                 <PiratePageNavBar/>
             </div>
 
-            <div id="allpirates" className=" p-4 flex gap-3">
+            <div id="allpirates" className=" p-4 flex gap-6 flex-wrap">
                 {
                     allPiratesData.map((pirate)=>{
                         return(

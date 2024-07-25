@@ -4,7 +4,6 @@ import React, { useState } from 'react'
 import CrewInfo from './CewInfo'
 import GeneralInformation from './GeneralInformation'
 import SpecialAttacks from './SpecialAttacks'
-import DevilFruit from './DevilFruit'
 import Weapons from './Weapons'
 import Allies from './Allies'
 

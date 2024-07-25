@@ -40,7 +40,7 @@ export interface PirateData {
     name: string;
     description: string;
     nickName: string;
-    bounty: number;
+    bounty: string;
     fightingStyle: string;
     rank: string;
     crewId: string;
@@ -56,7 +56,7 @@ export interface PirateData {
 export interface CrewMemberApiInterface {
     name?: string;
     id?: string;
-    bounty?: number;
+    bounty?: string;
     rank?:string;
     imageUrl?: string[];
     bgImageUrl:string[]

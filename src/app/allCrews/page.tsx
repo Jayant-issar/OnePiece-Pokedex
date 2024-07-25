@@ -1,6 +1,5 @@
 'use client'
 import CrewCard from "@/components/allCrews/CrewCard"
-import PirateCard from "@/components/piratepage/contents/PirateCard"
 import PiratePageNavBar from "@/components/piratepage/navbar"
 import axios from "axios"
 import { useMemo, useState } from "react"
@@ -13,7 +12,7 @@ type AllCrewsApiResponse = {
 }
 
 
-function AllPiratesOriginPage() {
+function AllCrewOriginPage() {
     const [allCrewData,SetallCrewData] = useState<AllCrewsApiResponse[]|null>(null)
     
     useMemo(()=>{
@@ -55,4 +54,4 @@ function AllPiratesOriginPage() {
   )
 }
 
-export default AllPiratesOriginPage
+export default AllCrewOriginPage

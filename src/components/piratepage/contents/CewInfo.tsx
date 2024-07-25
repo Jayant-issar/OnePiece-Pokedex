@@ -3,6 +3,7 @@ import CrewMembersCarousel from './crewmembersCarousel'
 import Image from 'next/image';
 import { Button } from '@/components/ui/button';
 import { PirateGroup } from '@/lib/types';
+import { CardContainer } from '@/components/ui/3d-card';
 
 
 
@@ -31,9 +32,10 @@ function CrewInfo(props:props) {
       <div id="aboutcrew" className=' flex flex-col gap-3'>
         <div id='crewname and image' className=' text-white text-5xl text-center font-semibold'>
           {props.crewdata.name}
-          <div className=' flex justify-center mt-2'>
-            <Image src={randomCrewbgImageLink} alt='Crew Image' width={500} height={450} className=' rounded-md'/>
-          </div>
+            <CardContainer containerClassName=' p-1'>
+              <Image src={randomCrewbgImageLink} alt='Crew Image' width={500} height={450} className=' rounded-md'/>
+            </CardContainer>
+          
         </div>
 
         <div id="aboutcrew" className=' text-white'>
