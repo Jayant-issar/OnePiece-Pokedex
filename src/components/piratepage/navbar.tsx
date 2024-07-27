@@ -27,7 +27,7 @@ function PiratePageNavBar() {
             {
               navbarElements.map((nav)=>{
                 return(
-                  <Link onClick={(e)=>{
+                  <Link key={nav.navId} onClick={(e)=>{
                     changeNavId(nav.navId)
                   }} href={nav.href}>
                     <div className={cn('p-2 hover:bg-white/10 rounded-lg',{

@@ -37,19 +37,16 @@ export function LandingPage2() {
           <span className="text-2xl font-bold text-red-600">One Piece Pokedex</span>
         </Link>
         <nav className="ml-auto text-black flex gap-4 sm:gap-6">
-          <Link href="#" className="text-sm font-medium hover:underline underline-offset-4" prefetch={false}>
+          <Link href="/pirate" className="text-sm font-medium hover:underline underline-offset-4" prefetch={false}>
             Characters
           </Link>
-          <Link href="#" className="text-sm font-medium hover:underline underline-offset-4 " prefetch={false}>
+          <Link href="/pirate" className="text-sm font-medium hover:underline underline-offset-4 " prefetch={false}>
             Devil Fruits
           </Link>
-          <Link href="#" className="text-sm font-medium hover:underline underline-offset-4" prefetch={false}>
+          <Link href="https://www.linkedin.com/in/jayant-issar/" className="text-sm font-medium hover:underline underline-offset-4" prefetch={false}>
             About
           </Link>
-          <Link href="#" className="text-sm font-medium hover:underline underline-offset-4 " prefetch={false}>
-            Login
-          </Link>
-          <Link href="#" className="text-sm font-medium hover:underline underline-offset-4" prefetch={false}>
+          <Link href="https://github.com/Jayant-issar/OnePiece-Pokedex" className="text-sm font-medium hover:underline underline-offset-4" prefetch={false}>
             Github
           </Link>
           <Link href="#" className="text-sm font-medium hover:underline underline-offset-4" prefetch={false}>
@@ -91,6 +88,9 @@ export function LandingPage2() {
             </div>
           </div>
         </section>
+        <div className=" w-full text-center font-semibold">
+          Database Seeding is still in progress, you may not find Characters you are looking for, click on Explore characters
+        </div>
         <section className="w-full py-12 md:py-24 lg:py-32">
           <div className="container space-y-12 px-4 md:px-6">
             <div className="flex flex-col items-center justify-center space-y-4 text-center">
@@ -367,6 +367,9 @@ export function LandingPage2() {
             </Link>
             <Link href="https://onepiece.fandom.com/wiki/One_Piece_Wiki" className="text-muted-foreground hover:underline" prefetch={false}>
               One Piece Fandom
+            </Link>
+            <Link href={'https://gamerant.com/'}  className="text-muted-foreground hover:underline">
+              Game Rant
             </Link>
 
             

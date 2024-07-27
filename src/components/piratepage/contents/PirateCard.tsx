@@ -10,6 +10,7 @@ type props = {
     pirateId:string | undefined
     bounty:string | undefined
     rank:string | undefined
+
 }
 
 function PirateCard(props:props) {
@@ -24,7 +25,7 @@ function PirateCard(props:props) {
                 </div>
                 <div className=''>
                     <p className=' text-base text-center font-semibold'>{props.fullname}</p>
-                    <p className=' text-center text-base'>{props.rank}</p>
+                    <p className=' text-center text-base'>{props.rank} </p>
                 </div>
             </div>
         </Link>

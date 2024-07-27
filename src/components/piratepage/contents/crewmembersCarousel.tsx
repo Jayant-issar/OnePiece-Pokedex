@@ -41,6 +41,11 @@ function CrewMembersCarousel({crewId}:props) {
   }
   console.log(crewMembers);
   
+  if (crewMembers.length==0){
+    return(
+      <></>
+    )
+  }
   
   return (
       <Carousel
@@ -65,7 +70,7 @@ function CrewMembersCarousel({crewId}:props) {
                   return(
                     <CarouselItem  className="md:basis-1/2  ">
                       <div className="p-1 max-w-48">
-                        <PirateCard rank={crewMember.rank} bounty={crewMember.bounty} fullname={crewMember.name} imageLink={imageArr[randomIndex]} pirateId={crewMember.id}/>
+                        <PirateCard rank={crewMember.rank} bounty={crewMember.bounty} fullname={crewMember.name} imageLink={imageArr[randomIndex]} pirateId={crewMember.id} />
                       </div>
                     </CarouselItem>
                   )

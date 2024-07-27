@@ -5,37 +5,49 @@ import { AnimatePresence, motion } from "framer-motion";
 import { useOutsideClick } from "@/hooks/use-outside-click";
 import axios from "axios";
 import Link from "next/link";
-
-type devilFruitsData = {
-  name:string;
-  description:string;
-  imageUrl:string;
-  type:string;
-  PirateCharacter:{name:string} | null
-  OtherCharacter:{name:string} |null
-  MarineCharacter:{name:string} | null
-}
+import { DevilFruit, Haki, SpecialAttack, Weapon } from "@/lib/types";
 
 
+type MarineCharacter = {
+    id: string;
+    name: string;
+    description: string;
+    rank: string;
+    imageUrl: string[];
+    bgImageUrl: string[];
+    DevilFruit: DevilFruit[]|[];
+    Haki: Haki[]|[];
+    SpecialAttack: SpecialAttack[] | [];
+    Weapon: Weapon[] | [];
+  };
 
-export default function ExpandableCards() {
-  const [active, setActive] = useState< devilFruitsData | boolean | null>(
+
+
+export default function MarineCharacterExpandeble() {
+  const [active, setActive] = useState< MarineCharacter | boolean | null>(
     null
   );
   const [requestFailed, setrequestFailed] = useState<boolean>(false)
 
-  const [devilFruitsData, setdevilFruitsData] = useState<devilFruitsData[]|null>(null)
+  const [MarineCharacter, setMarineCharacter] = useState<MarineCharacter[]|null>(null)
   
   useMemo(()=>{
     async function fetchData() {
       try {
-        const response = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/devilFruits`)
-        setdevilFruitsData(response.data.allDevilFruits)
+        const link = `${process.env.NEXT_PUBLIC_API_URL}/allMarines`
+        console.log(link);
+        
+        const response = await axios.get(link)
+        setMarineCharacter(response.data.allMarines)
+        if(!response.data.allMarines){
+          setrequestFailed(true)
+        }
+        
 
         
       } catch (error) {
-        console.log("error loading devil fruits data", error);
-        if (!devilFruitsData){
+        console.log("error loading devil OtherCharacters data", error);
+        if (!MarineCharacter){
           setrequestFailed(true)
         }
         
@@ -69,16 +81,16 @@ export default function ExpandableCards() {
   if (requestFailed){
     return(
       <div className=" text-white/90 text-5xl text-center w-full">
-        The backend is down, please try again later or contact the devloper 
+        The backend is down, please try again later or contact the devloper, <Link href={"https://www.linkedin.com/in/jayant-issar/"}>here</Link>
       </div>
     )
   }
   
-  if(!devilFruitsData){
+  if(!MarineCharacter){
     
     setTimeout(() => {
       return(
-        <div className="h-screen w-screen bg-transparent bg-cover bg-center text-4xl flex justify-center items-center">
+        <div className="h-[100vh] w-screen bg-transparent bg-cover bg-center text-4xl flex justify-center items-center">
           Request time out. Sorry the server seems be to be down please contact the devloper {<Link href={'https://www.linkedin.com/in/jayant-issar/'}>Here</Link>}
         </div>
       )
@@ -135,7 +147,7 @@ export default function ExpandableCards() {
                   priority
                   width={200}
                   height={200}
-                  src={active.imageUrl}
+                  src={active.bgImageUrl[0]}
                   alt={active.name}
                   className="w-full h-80 lg:h-80 sm:rounded-tr-lg sm:rounded-tl-lg object-cover object-top"
                 />
@@ -151,14 +163,12 @@ export default function ExpandableCards() {
                       {active.name}
                     </motion.h3>
                     <motion.p
-                      layoutId={`description-${active.type}-${id}`}
+                      layoutId={`description-${active.rank}-${id}`}
                       className="text-white/80 text-base"
                     >
-                      {active.type}
+                      {active.rank}
                     </motion.p>
-                    <motion.p className=" text-white/90 ">
-                      Current User - {active.MarineCharacter ? `${active.MarineCharacter.name}` : ""} {active.PirateCharacter ? `${active.PirateCharacter.name}` : ""} {active.OtherCharacter ? `${active.OtherCharacter.name}` : ""}
-                    </motion.p>
+                   
                   </div>
 
                   {/* <motion.a
@@ -192,35 +202,35 @@ export default function ExpandableCards() {
         ) : null}
       </AnimatePresence>
       <ul className="flex flex-wrap gap-4 p-4">
-        {devilFruitsData.map((fruit, index) => (
+        {MarineCharacter.map((MarineCharacter, index) => (
           <motion.div
-            layoutId={`card-${fruit.name}-${id}`}
-            key={fruit.name}
-            onClick={() => setActive(fruit)}
+            layoutId={`card-${MarineCharacter.name}-${id}`}
+            key={MarineCharacter.name}
+            onClick={() => setActive(MarineCharacter)}
             className="p-4 flex flex-col bg-zinc-800 bg-opacity-70  hover:bg-white/20 dark:hover:bg-neutral-800 rounded-xl cursor-pointer"
           >
             <div className="flex gap-4 flex-col w-48">
-              <motion.div layoutId={`image-${fruit.name}-${id}`} className=" flex justify-center">
+              <motion.div layoutId={`image-${MarineCharacter.name}-${id}`} className=" flex justify-center">
                 <Image
-                  width={100}
+                  width={200}
                   height={100}
-                  src={fruit.imageUrl}
-                  alt={fruit.name}
-                  className="h-52 w-44 rounded-lg"
+                  src={MarineCharacter.bgImageUrl[0]}
+                  alt={MarineCharacter.name}
+                  className="h-28 w-80 rounded-lg"
                 />
               </motion.div>
               <div className="flex justify-center items-center flex-col">
                 <motion.h3
-                  layoutId={`title-${fruit.name}-${id}`}
+                  layoutId={`title-${MarineCharacter.name}-${id}`}
                   className="font-medium text-white/90 dark:text-neutral-200 text-center md:text-left text-sm"
                 >
-                  {fruit.name}
+                  {MarineCharacter.name}
                 </motion.h3>
                 <motion.p
-                  layoutId={`description-${fruit.type}-${id}`}
+                  layoutId={`description-${MarineCharacter.rank}-${id}`}
                   className="text-white/80 dark:text-neutral-400 text-center md:text-left text-base"
                 >
-                  {fruit.type}
+                  {MarineCharacter.rank}
                 </motion.p>
               </div>
             </div>

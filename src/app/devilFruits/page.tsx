@@ -1,4 +1,4 @@
-import ExpandableCardDemo from '@/components/blocks/expandable-card-demo-grid'
+import ExpandableCards from '@/components/blocks/expandable-card-demo-grid'
 import PiratePageNavBar from '@/components/piratepage/navbar'
 import React from 'react'
 
@@ -10,7 +10,7 @@ function DevilFruitPage() {
             <div id="piratepagenavbar" className=''>
                 <PiratePageNavBar/>
             </div>
-            <ExpandableCardDemo/>
+            <ExpandableCards/>
         </div>
         </div>
     </div>

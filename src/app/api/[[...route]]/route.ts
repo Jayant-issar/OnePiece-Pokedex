@@ -6,11 +6,7 @@ export const runtime = 'edge'
 
 const app = new Hono().basePath('/api')
 
-app.get('/hello', (c)=>{
-    return c.json({
-        message:"hello "
-    })
-})
+
 
 app.get('/allpirates', async (c) => {
     try {
@@ -93,6 +89,53 @@ app.get('/devilFruits', async (c)=>{
 })
 
 
+//search all other characters
+
+app.get("/otherCharacters", async(c)=>{
+    try {
+        const otherCharacters = await db.otherCharacter.findMany({
+            include:{
+                Weapon:true,
+                DevilFruit:true,
+                Haki:true,
+                SpecialAttack:true
+            }
+        })
+        return c.json({
+            otherCharacters:otherCharacters
+        })
+    } catch (error) {
+        console.error("error finding all other characters", error);
+        return c.json(({
+            error:error
+        }))
+        
+    }
+})
+
+//search all marines
+app.get('/allMarines', async(c)=>{
+    try {
+        const allMarines = await db.marineCharacter.findMany({
+            include:{
+                DevilFruit:true,
+                Haki:true,
+                SpecialAttack:true,
+                Weapon:true,
+            }
+            })
+            return c.json({
+                allMarines:allMarines
+            })
+    } catch (error) {
+        console.error("error find all marines", error);
+        return c.json({
+            error:error
+        })
+        
+    }
+})
+
 //serach pirate group
 app.get('/crew', async (c) => {
     const crewId = c.req.query("crewId")
@@ -133,6 +176,64 @@ app.get('/pirate',async (c)=>{
         console.error(error);
         console.log("no such pirate found");
         
+        
+    }
+})
+
+//allies search
+
+app.get('/allies', async(c)=>{
+    const searchCrewId = c.req.query('searchCrewId');
+
+    try {
+        const allies = await db.ally.findMany({
+            where:{
+                OR:[
+                    {pirateId1:searchCrewId},
+                    {pirateId2:searchCrewId}
+                ]
+            },include:{
+                PirateGroup1:{
+                    select:{
+                        id:true,
+                        name:true,
+                        description:true,
+                        shipName:true,
+                        orgType:true,
+                        imageUrl:true,
+                        bgImageUrl:true
+                    }
+                },
+                PirateGroup2:{
+                    select:{
+                        id:true,
+                        name:true,
+                        description:true,
+                        shipName:true,
+                        orgType:true,
+                        imageUrl:true,
+                        bgImageUrl:true
+                    }
+                }
+            }
+        })
+        
+        const alliesArr = allies.map((ally)=>{
+            if(ally.PirateGroup1.id==searchCrewId){
+                return ally.PirateGroup2
+            }else{
+                return ally.PirateGroup1
+            }
+        })
+
+        return c.json({
+            allies:alliesArr
+        })
+    } catch (error) {
+        console.error("error find aliies", error);
+        return c.json({
+            error:error
+        })
         
     }
 })

@@ -3,7 +3,7 @@ import ContentMaster from '@/components/piratepage/contents/ContentMaster'
 import Controls from '@/components/piratepage/Controls'
 import PiratePageNavBar from '@/components/piratepage/navbar'
 import { useStore } from '@/lib/store'
-import { PirateData } from '@/lib/types'
+import { PirateData, PirateGroup } from '@/lib/types'
 import axios from 'axios'
 import Image from 'next/image'
 import { redirect, useSearchParams } from 'next/navigation'
@@ -24,12 +24,15 @@ function PirateOriginPage() {
   if (pirateId==null){
     redirect("/pirate?pirateId=cjlcg4gxi0000v1ltfhz6u1v6")
   }
+  const [requestFailed, setrequestFailed] = useState<boolean>(false)
 
   //fetching data
   const [pirateData, setPirateData] = useState<PirateData | null>(null)
   const {controlId , inc} = useStore()
   const [randomForegroundImage, setRandomForegroundImage] = useState<string>("");
   const [randomBGImage, setRandomBGImage] = useState<string>("");
+  const [alliesData, setalliesData] = useState<PirateGroup[]| null>(null)
+  
 
 
   useEffect(()=>{
@@ -45,16 +48,32 @@ function PirateOriginPage() {
         const randomBackground = response.data.piratedata.bgImageUrl[Math.floor(Math.random() * response.data.piratedata.bgImageUrl.length)];
         setRandomForegroundImage(randomForeground);
         setRandomBGImage(randomBackground);
+
+        const alliesLink = `${process.env.NEXT_PUBLIC_API_URL}/allies?searchCrewId=${response.data.piratedata.crewId}`
+        const alliesResponse = await axios.get(alliesLink)
+        setalliesData(alliesResponse.data.allies)
         
       } catch (error) {
         console.error("error fetching pirate data ", error);
-        
+        setrequestFailed(true)
       }
     }
     fetchPirateData()
-  },[pirateId])
+
   
-  if (!pirateData) {
+  },[pirateId])
+  if (requestFailed){
+    return(
+        <div className="h-screen w-screen bg-[url('/landing/onepiecelanding2.jpg')] bg-cover bg-center">
+            <div className=" bg-zinc-900 bg-opacity-65 backdrop-blur-md text-5xl flex justify-center items-center h-screen w-screen text-white font-semibold p-4 gap-0">
+                <p>The backend is down please try again after some time or contact the devloper,</p>
+                <a href="https://www.linkedin.com/in/jayant-issar/" >here</a>
+
+            </div>
+        </div>
+    )
+}
+  if (!pirateData || !alliesData) {
     return(
       <div className="h-screen w-screen bg-[url('/loadingAnimations/onePieceLoadingAnimation1.gif')] bg-cover bg-center">
       </div>
@@ -78,7 +97,7 @@ function PirateOriginPage() {
               <div id="informationContainer" className='k w-[40vw] h-full overflow-y-scroll '>
                 
                 {/* fixed error from ai on passing the prop learn whats exactly happing */}
-                <ContentMaster {...pirateData} />
+                <ContentMaster PirateData={pirateData} AliiesData={alliesData}  />
               </div>
 
               <div id="characterphotocontainer" className=' w-[40vw] flex justify-center '>
