@@ -77,7 +77,7 @@ export function LandingPage2() {
                 </div>
               </div>
               <div className="flex justify-center">
-                <img
+                <Image
                   src="/landing/onepiecelanding2.jpg"
                   width={400}
                   height={400}
@@ -104,7 +104,7 @@ export function LandingPage2() {
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
               <Card className="bg-background rounded-lg overflow-hidden shadow-md">
-                <img
+                <Image
                   src="/landing/OnePiecePokedexPirateInfo.PNG"
                   width={200}
                   height={200}
@@ -135,7 +135,7 @@ export function LandingPage2() {
                 </CardContent>
               </Card>
               <Card className="bg-background rounded-lg overflow-hidden shadow-md">
-                <img src="https://staticg.sportskeeda.com/editor/2023/04/0a1a4-16807424922904-1920.jpg" width={200} height={170} alt="Haki" className="w-auto h-auto object-cover" />
+                <Image src="https://staticg.sportskeeda.com/editor/2023/04/0a1a4-16807424922904-1920.jpg" width={200} height={170} alt="Haki" className="w-auto h-auto object-cover" />
                 <CardContent className="p-4">
                   <h3 className="text-xl font-bold text-red-600">Haki</h3>
                   <p className="text-muted-foreground">
@@ -144,7 +144,7 @@ export function LandingPage2() {
                 </CardContent>
               </Card>
               <Card className="bg-background rounded-lg overflow-hidden shadow-md">
-                <img
+                <Image
                   src="https://beebom.com/wp-content/uploads/2023/02/featured-8.jpg?w=750&quality=75"
                   width={200}
                   height={200}
@@ -239,7 +239,7 @@ export function LandingPage2() {
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
               <Card className="bg-background rounded-lg overflow-hidden shadow-md">
-                <img
+                <Image
                   src="https://i.pinimg.com/736x/c9/43/b0/c943b003a2f644037821087bf7cb35e3.jpg"
                   width={200}
                   height={200}
@@ -255,7 +255,7 @@ export function LandingPage2() {
                 </CardContent>
               </Card>
               <Card className="bg-background rounded-lg overflow-hidden shadow-md">
-                <img
+                <Image
                   src="https://i.pinimg.com/736x/01/33/0b/01330b5f4e7cf4dc31c46f16fe54cd21.jpg"
                   width={200}
                   height={200}
@@ -270,7 +270,7 @@ export function LandingPage2() {
                 </CardContent>
               </Card>
               <Card className="bg-background rounded-lg overflow-hidden shadow-md">
-                <img src="https://i.pinimg.com/564x/85/b4/ff/85b4ff574be958f5d12b2cbe4cbdeefb.jpg" width={200} height={200} alt="Nami" className="w-full h-48 object-cover" />
+                <Image src="https://i.pinimg.com/564x/85/b4/ff/85b4ff574be958f5d12b2cbe4cbdeefb.jpg" width={200} height={200} alt="Nami" className="w-full h-48 object-cover" />
                 <CardContent className="p-4">
                   <h3 className="text-xl font-bold text-red-600">Nami</h3>
                   <p className="text-muted-foreground">
@@ -280,7 +280,7 @@ export function LandingPage2() {
                 </CardContent>
               </Card>
               <Card className="bg-background rounded-lg overflow-hidden shadow-md">
-                <img src="https://i.pinimg.com/736x/78/73/07/78730784e6335107f0af5cd57b40cf59.jpg" width={200} height={200} alt="Usopp" className="w-full h-48 object-cover" />
+                <Image src="https://i.pinimg.com/736x/78/73/07/78730784e6335107f0af5cd57b40cf59.jpg" width={200} height={200} alt="Usopp" className="w-full h-48 object-cover" />
                 <CardContent className="p-4">
                   <h3 className="text-xl font-bold text-red-600">Usopp</h3>
                   <p className="text-muted-foreground">
@@ -289,7 +289,7 @@ export function LandingPage2() {
                 </CardContent>
               </Card>
               <Card className="bg-background rounded-lg overflow-hidden shadow-md">
-                <img src="https://i.pinimg.com/564x/ba/aa/4b/baaa4b6465701df2c075971928315893.jpg" width={200} height={200} alt="Sanji" className="w-full h-48 object-cover" />
+                <Image src="https://i.pinimg.com/564x/ba/aa/4b/baaa4b6465701df2c075971928315893.jpg" width={200} height={200} alt="Sanji" className="w-full h-48 object-cover" />
                 <CardContent className="p-4">
                   <h3 className="text-xl font-bold text-red-600">Sanji</h3>
                   <p className="text-muted-foreground">
@@ -299,7 +299,7 @@ export function LandingPage2() {
                 </CardContent>
               </Card>
               <Card className="bg-background rounded-lg overflow-hidden shadow-md">
-                <img
+                <Image
                   src="https://i.pinimg.com/564x/a7/b9/f8/a7b9f861399a6b21d7251aa03a93c1d5.jpg"
                   width={200}
                   height={200}
@@ -315,7 +315,7 @@ export function LandingPage2() {
                 </CardContent>
               </Card>
               <Card className="bg-background rounded-lg overflow-hidden shadow-md">
-                <img
+                <Image
                   src="https://i.pinimg.com/564x/88/75/d2/8875d2afe14f4076e34f479ec1a1524e.jpg"
                   width={200}
                   height={200}
@@ -331,7 +331,7 @@ export function LandingPage2() {
                 </CardContent>
               </Card>
               <Card className="bg-background rounded-lg overflow-hidden shadow-md">
-                <img
+                <Image
                   src="https://i.pinimg.com/564x/e6/ef/7d/e6ef7d58233a7ca84c5d4cdbe2122649.jpg"
                   width={200}
                   height={200}

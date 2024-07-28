@@ -42,7 +42,7 @@ export default function ExpandableCards() {
       }      
     }
     fetchData()
-  },[])
+  },[devilFruitsData])
 
   const id = useId();
   const ref = useRef<HTMLDivElement>(null);

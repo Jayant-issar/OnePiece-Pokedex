@@ -13,7 +13,7 @@ function DevilFruitContent(props:props) {
   if(props.devilfruitdata.length==0){
     return(
       <div className=" text-white flex justify-center text-center items-center text-5xl">
-        Bro doesn"t have a Devil Fruit
+        <p>Bro does not have a Devil Fruit</p>
       </div>
     )
   }

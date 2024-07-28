@@ -25,7 +25,7 @@ function Allies(props:props) {
               const randomCrewbgImageLink = ally.bgImageUrl[Math.floor(Math.random() * ally.bgImageUrl.length)]
               setrandomBGImage(randomCrewbgImageLink)
               
-            },[])
+            },[ally.bgImageUrl])
             const [crewDescriptionOpen, setCrewDescriptionOpen] = useState(false)
             
             const customCSS = {

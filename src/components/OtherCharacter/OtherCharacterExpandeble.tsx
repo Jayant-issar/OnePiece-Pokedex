@@ -52,7 +52,7 @@ export default function OtherCharacterExpandeble() {
       }      
     }
     fetchData()
-  },[])
+  },[OtherCharacter])
 
   const id = useId();
   const ref = useRef<HTMLDivElement>(null);
