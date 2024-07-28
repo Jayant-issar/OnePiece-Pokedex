@@ -5,7 +5,7 @@ import {cors} from 'hono/cors'
 
 export const runtime = 'edge'
 
-export const app = new Hono().basePath('/api')
+const app = new Hono().basePath('/api')
 
 app.use('/*',cors())
 
