@@ -19,7 +19,7 @@ function Allies(props:props) {
     <div className=' flex flex-col gap-3'>
       {
         props.AlliesData.map((ally)=>{
-          function allyfunction(ally:any){
+          function Allyfunction(ally:any){
             const [randomBGImage, setrandomBGImage] = useState<string>("")
             useMemo(()=>{
               const randomCrewbgImageLink = ally.bgImageUrl[Math.floor(Math.random() * ally.bgImageUrl.length)]
@@ -77,7 +77,7 @@ function Allies(props:props) {
               )
             
           }
-          return allyfunction(ally)
+          return Allyfunction(ally)
               
           })
         
