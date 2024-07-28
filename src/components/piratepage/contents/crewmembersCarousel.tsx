@@ -27,7 +27,7 @@ function CrewMembersCarousel({crewId}:props) {
       setCrewMembers(response.data.crewMembers)
     }
     fetchCrewMembers()
-  },[])
+  },[crewId])
 
   if(!crewMembers){
     return (
@@ -66,7 +66,7 @@ function CrewMembersCarousel({crewId}:props) {
                   const randomIndex = Math.floor(Math.random() * imageArr.length)
                    
                   return(
-                    <CarouselItem  className="md:basis-1/2  ">
+                    <CarouselItem  className="md:basis-1/2" key={crewMember.id}>
                       <div className="p-1 max-w-48">
                         <PirateCard rank={crewMember.rank} bounty={crewMember.bounty} fullname={crewMember.name} imageLink={imageArr[randomIndex]} pirateId={crewMember.id} />
                       </div>
