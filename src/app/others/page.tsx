@@ -2,7 +2,7 @@ import ExpandableCards from '@/components/blocks/expandable-card-demo-grid'
 import OtherCharacterExpandeble from '@/components/OtherCharacter/OtherCharacterExpandeble'
 import PiratePageNavBar from '@/components/piratepage/navbar'
 import React from 'react'
-
+export const runtime = 'edge'
 function OtherCharacterOriginPage() {
   return (
     <div>

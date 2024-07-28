@@ -7,7 +7,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "deploy": "wrangler deploy --minify --name onepiece-pokedex-api src/app/api/[[...route]]/route.ts"
+    "deploy": "wrangler deploy --minify --name onepiece-pokedex-api src/app/api/[[...route]]/route.ts",
+    "pages:build":"npx @cloudflare/next-on-pages"
   },
   "dependencies": {
     "@prisma/client": "^5.17.0",
@@ -32,6 +33,7 @@
     "zustand": "^4.5.4"
   },
   "devDependencies": {
+    "@cloudflare/next-on-pages": "^1.12.1",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",

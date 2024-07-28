@@ -13,6 +13,7 @@ type AllpiratesApiResponse = {
     rank:string
 }
 
+export const runtime = 'edge'
 
 function AllPiratesOriginPage() {
     const [allPiratesData,SetAllPiratesData] = useState<AllpiratesApiResponse[]|null>(null)

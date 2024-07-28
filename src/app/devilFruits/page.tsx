@@ -1,7 +1,7 @@
 import ExpandableCards from '@/components/blocks/expandable-card-demo-grid'
 import PiratePageNavBar from '@/components/piratepage/navbar'
 import React from 'react'
-
+export const runtime = 'edge'
 function DevilFruitPage() {
   return (
     <div>

@@ -8,8 +8,8 @@ import axios from 'axios'
 import Image from 'next/image'
 import { redirect, useSearchParams } from 'next/navigation'
 import React, { useEffect, useMemo, useState } from 'react'
-import { useRouter } from 'next/router'
 
+export const runtime = 'edge'
 type imagesType = {
   foregroundImageUrl : string;
   backgroundImageUrl:string ;

@@ -11,7 +11,7 @@ type AllCrewsApiResponse = {
 
 }
 
-
+export const runtime = 'edge'
 function AllCrewOriginPage() {
     const [allCrewData,SetallCrewData] = useState<AllCrewsApiResponse[]|null>(null)
     

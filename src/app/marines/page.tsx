@@ -3,7 +3,7 @@ import MarineCharacterExpandeble from '@/components/MarinesComponenets/MarinesEx
 
 import PiratePageNavBar from '@/components/piratepage/navbar'
 import React from 'react'
-
+export const runtime = 'edge'
 function MarinesOriginPage() {
   return (
     <div>
