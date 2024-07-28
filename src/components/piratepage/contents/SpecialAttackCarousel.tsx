@@ -13,7 +13,7 @@ function SpecialAttackCarousel(props:props) {
             {
                 props.imageurlarr.map((image)=>{
                     return(
-                        <CarouselItem>
+                        <CarouselItem key={image}>
                            <div className=' flex justify-center mt-2 overflow-clip'>
                                 <Image src={image} alt='Specail Attack' width={500} height={450} className=' relative h-56 overflow-clip'/>
                             </div>

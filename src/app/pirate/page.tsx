@@ -60,7 +60,7 @@ function PirateOriginPage() {
     fetchPirateData()
 
   
-  },[pirateId])
+  },[inc])
   if (requestFailed){
     return(
         <div className="h-screen w-screen bg-[url('/landing/onepiecelanding2.jpg')] bg-cover bg-center">

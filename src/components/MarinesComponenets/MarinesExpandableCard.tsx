@@ -53,7 +53,7 @@ export default function MarineCharacterExpandeble() {
       }      
     }
     fetchData()
-  },[])
+  },[MarineCharacter])
 
   const id = useId();
   const ref = useRef<HTMLDivElement>(null);

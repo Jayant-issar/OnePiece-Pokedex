@@ -53,7 +53,7 @@ const Searchbar = () => {
                 <div className="absolute top-20 p-4 bg-black bg-opacity-80 text-white w-full rounded-xl left-1/2 -translate-x-1/2 flex flex-col gap-2">
                     {
                         activeSearch.map(pirate => (
-                            <Link href={`pirate?pirateId=${pirate.id}`}>
+                            <Link href={`pirate?pirateId=${pirate.id}`} key={pirate.id}>
                                 <div className=' text-white h-[4.5rem] w-full rounded-lg flex items-center pl-2 gap-2 hover:bg-white/20'>
                                     <div id="imageContainer" className=''>
                                         <Image src={pirate.bgImageUrl[0]} alt='image' height={50} width={70} className=' h-10 w-14 overflow-clip rounded-sm'/>
