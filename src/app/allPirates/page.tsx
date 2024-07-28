@@ -64,7 +64,7 @@ function AllPiratesOriginPage() {
                 {
                     allPiratesData.map((pirate)=>{
                         return(
-                            <div>
+                            <div key={pirate.id}>
                                 <PirateCard fullname={pirate.name} pirateId={pirate.id} rank={pirate.rank} imageLink={pirate.bgImageUrl[Math.floor(Math.random()*pirate.bgImageUrl.length)]} bounty={pirate.bounty}/>
                             </div>
                         )

@@ -1,0 +1,8 @@
+name = "onepiece-pokedex-api"
+
+
+compatibility_date = "2024-07-28"
+
+
+[vars]
+SUPABASE_ACCELERATE_DATABASE_URL = "prisma://accelerate.prisma-data.net/?api_key=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhcGlfa2V5IjoiYzRlZDdiMjAtYTYxMi00ODgzLWE1Y2EtYjc5YTdkY2UyNWRhIiwidGVuYW50X2lkIjoiNzlmZjdlZDU4NTI5MzZjZmZjMTc4YTEwNzYwZDkzMTIyNGMzOWY2NDY1MGZmNTk3MDk0YTE1NmEyODY4YjdmNSIsImludGVybmFsX3NlY3JldCI6ImQ0YmRhNDgxLWY1M2ItNDFiMC1iMjVkLWY1ZDFjMjkzOGFiNCJ9.xhmNflpQRvHzw5iiGoVFQc1dp-AIYEzOLAC6c-VqDZ8"

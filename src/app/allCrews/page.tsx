@@ -41,7 +41,7 @@ function AllCrewOriginPage() {
                 {
                     allCrewData.map((pirate)=>{
                         return(
-                            <div>
+                            <div key={pirate.id}>
                                 <CrewCard fullname={pirate.name} crewId={pirate.id}  imageLink={pirate.bgImageUrl[Math.floor(Math.random()*pirate.bgImageUrl.length)]} />
                             </div>
                         )

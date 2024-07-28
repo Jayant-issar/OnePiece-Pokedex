@@ -5,12 +5,17 @@ import Searchbox from './Searchbox'
 import { cn } from '@/lib/utils'
 import { useNavStore } from '@/lib/store'
 import { redirect } from 'next/navigation'
+import { useRouter } from 'next/router'
 
 function PiratePageNavBar() {
   const {currentNavId, changeNavId} = useNavStore()
   const navbarElements = [{"navId":0,"navName":"Home","href":"/pirate"},{"navId":1,"navName":"Pirates","href":"/allPirates"},{"navId":2,"navName":"Pirate Crews","href":"/allCrews"},{"navId":3,"navName":"Marines","href":"/marines"},{"navId":4,"navName":"Others","href":"/others"},
     {"navId":5,"navName":"Devil Fruits","href":"/devilFruits"},{"navId":6,"navName":"About","href":"https://www.linkedin.com/in/jayant-issar/"}
   ]
+
+  
+  
+  
   return (
     <div id="ladingpagenavbar" className="w-full h-[10.3vh] flex items-center gap-6 justify-between py- px-3">
         <div id='logo and features' className='flex items-center gap-6'>

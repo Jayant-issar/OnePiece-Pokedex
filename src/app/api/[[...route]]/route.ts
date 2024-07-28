@@ -1,12 +1,13 @@
 import db from '@/lib/db'
 import { Hono } from 'hono'
 import { handle } from 'hono/vercel'
+import {cors} from 'hono/cors'
 
 export const runtime = 'edge'
 
-const app = new Hono().basePath('/api')
+export const app = new Hono().basePath('/api')
 
-
+app.use('/*',cors())
 
 app.get('/allpirates', async (c) => {
     try {
@@ -379,3 +380,4 @@ app.get('/haki', async (c) => {
 
 export const GET = handle(app)
 export const POST = handle(app)
+export default app as never

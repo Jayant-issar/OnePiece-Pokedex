@@ -7,7 +7,7 @@ import { PirateData, PirateGroup } from '@/lib/types'
 import axios from 'axios'
 import Image from 'next/image'
 import { redirect, useSearchParams } from 'next/navigation'
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useMemo, useState } from 'react'
 import { useRouter } from 'next/router'
 
 type imagesType = {
@@ -35,7 +35,7 @@ function PirateOriginPage() {
   
 
 
-  useEffect(()=>{
+  useMemo(()=>{
     const fetchPirateData = async () => {
       setPirateData(null) // setting the piratedata to null again to trigger reload animation
       inc(0) // setting the controlId to 0 (general information tab)
