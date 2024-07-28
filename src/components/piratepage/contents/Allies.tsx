@@ -14,11 +14,6 @@ type props = {
 }
 
 function Allies(props:props) {
-  console.log(props.AlliesData);
-  
-  
-  
-  
 
   return (
     <div className=' flex flex-col gap-3'>

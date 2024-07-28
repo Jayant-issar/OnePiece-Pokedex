@@ -17,7 +17,6 @@ type props = {
 }
 
 function CrewMembersCarousel({crewId}:props) {
-  console.log(crewId);
 
   const [crewMembers,setCrewMembers] = useState<CrewMemberApiInterface[] |null>(null)
 
@@ -39,7 +38,6 @@ function CrewMembersCarousel({crewId}:props) {
       </div>
     )
   }
-  console.log(crewMembers);
   
   if (crewMembers.length==0){
     return(

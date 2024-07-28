@@ -35,7 +35,6 @@ export default function MarineCharacterExpandeble() {
     async function fetchData() {
       try {
         const link = `${process.env.NEXT_PUBLIC_API_URL}/allMarines`
-        console.log(link);
         
         const response = await axios.get(link)
         setMarineCharacter(response.data.allMarines)

@@ -41,7 +41,6 @@ function PirateOriginPage() {
       inc(0) // setting the controlId to 0 (general information tab)
       try {
         const response = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/pirate?pirateId=${pirateId}`)
-        console.log(response.data.piratedata);
         setPirateData(response.data.piratedata)
         
         const randomForeground = response.data.piratedata.imageUrl[Math.floor(Math.random() * response.data.piratedata.imageUrl.length)];

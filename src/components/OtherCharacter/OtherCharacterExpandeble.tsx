@@ -35,8 +35,6 @@ export default function OtherCharacterExpandeble() {
     async function fetchData() {
       try {
         const link = `${process.env.NEXT_PUBLIC_API_URL}/otherCharacters`
-        console.log(link);
-        
         const response = await axios.get(link)
         setOtherCharacter(response.data.otherCharacters)
         if(!response.data.otherCharacters){
